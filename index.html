@@ -14,6 +14,119 @@
   
   <!-- 폰트어썸 (아이콘용) -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    /* 전체 기본 폰트 및 배경 세팅 */
+    body {
+      font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
+      background-color: #f8f9fa;
+      color: #333;
+      margin: 0;
+      padding: 0;
+      line-height: 1.6;
+    }
+
+    /* 상단 네비게이션 & 대형 증상 버튼 */
+    #top-menu {
+      background: #ffffff;
+      padding: 20px 15px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      text-align: center;
+    }
+    
+    .logo-area {
+      font-size: 20px;
+      font-weight: bold;
+      margin-bottom: 15px;
+      color: #222;
+    }
+    .logo-area span { color: #ff4a6b; }
+
+    /* 해시태그 버튼 스타일 트렌디하게 변경 */
+    button, .quick-btn {
+      background: #ffe3e8;
+      color: #ff4a6b;
+      border: none;
+      padding: 10px 18px;
+      margin: 5px;
+      border-radius: 25px;
+      font-weight: bold;
+      font-size: 14px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    button:hover, .quick-btn:hover {
+      background: #ff4a6b;
+      color: #fff;
+      transform: translateY(-2px);
+    }
+
+    /* 메인 컨테이너 구조화 (모바일/PC 반응형) */
+    body > div, main, .container {
+      max-width: 800px;
+      margin: 30px auto;
+      padding: 0 20px;
+      box-sizing: border-box;
+    }
+
+    /* 섹션별 카드 레이아웃 적용 */
+    h1, h2, h3 {
+      color: #111;
+      margin-top: 35px;
+      margin-bottom: 15px;
+      font-size: 22px;
+    }
+
+    /* 유행병 경보 & 대시보드 박스 시각화 */
+    ul, ol, div[style*="border"] {
+      background: #fff;
+      padding: 25px;
+      border-radius: 16px !important;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.04);
+      border: none !important;
+      border-left: 5px solid #ff4a6b !important;
+      margin-bottom: 20px;
+    }
+    li { margin-bottom: 10px; list-style-type: none; position: relative; }
+    li::before { content: "•"; color: #ff4a6b; font-weight: bold; display: inline-block; width: 1em; margin-left: -1em; }
+
+    /* 검색창 트렌디하게 변경 */
+    input[type="text"] {
+      width: 100%;
+      padding: 14px 24px;
+      margin: 15px 0;
+      border: 1.5px solid #eee;
+      border-radius: 30px;
+      font-size: 16px;
+      background: #fff;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+      box-sizing: border-box;
+      transition: all 0.2s ease;
+    }
+    input[type="text"]:focus {
+      outline: none;
+      border-color: #ff4a6b;
+      box-shadow: 0 4px 12px rgba(255, 74, 107, 0.15);
+    }
+
+    /* 야간 모드 및 기타 텍스트 정돈 */
+    p, span, label {
+      font-size: 15px;
+      color: #555;
+    }
+
+    /* 하단 정책 안내 구역 스타일링 */
+    div[style*="광고"] {
+      margin-top: 40px;
+      padding: 25px;
+      background: #f1f3f5 !important;
+      border-left: 5px solid #adb5bd !important;
+      border-radius: 12px !important;
+      font-size: 14px;
+    }
+  </style>
 </head>
 <body>
 
