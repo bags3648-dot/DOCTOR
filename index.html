@@ -3,130 +3,20 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>자취닥터 (Holo-Yak) - 자취생 맞춤형 응급 상비약 & 실시간 예측 예방 가이드</title>
+  <title>자취닥터 (Holo-Yak)</title>
   
-  <!-- SEO 메타 태그 정의 -->
-  <meta name="description" content="돈 없고 혼자 사는 자취생의 생존을 위한 실시간 예측 응급 상비약 정보 및 24시간 매핑 가이드">
-  <meta name="keywords" content="자취닥터, Holo-Yak, 상비약, 편의점 상비약, 야간약국, 자취생 응급조치, 복약타이머">
+  <!-- SEO 메타 데이터 -->
+  <meta name="description" content="1인 가구 자취생을 위한 초로컬 응급 구호 상비약 가이드 및 실시간 재고/시간 필터 서비스">
   
-  <!-- 스타일시트 연동 -->
+  <!-- Noto Sans KR 및 Outfit 폰트 사전 로드 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  
+  <!-- 스타일시트 경로 연동 -->
   <link rel="stylesheet" href="css/style.css">
   
-  <!-- 폰트어썸 (아이콘용) -->
+  <!-- 아이콘 라이브러리 FontAwesome CDN -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <style>
-    /* 전체 기본 폰트 및 배경 세팅 */
-    body {
-      font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
-      background-color: #f8f9fa;
-      color: #333;
-      margin: 0;
-      padding: 0;
-      line-height: 1.6;
-    }
-
-    /* 상단 네비게이션 & 대형 증상 버튼 */
-    #top-menu {
-      background: #ffffff;
-      padding: 20px 15px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      text-align: center;
-    }
-    
-    .logo-area {
-      font-size: 20px;
-      font-weight: bold;
-      margin-bottom: 15px;
-      color: #222;
-    }
-    .logo-area span { color: #ff4a6b; }
-
-    /* 해시태그 버튼 스타일 트렌디하게 변경 */
-    button, .quick-btn {
-      background: #ffe3e8;
-      color: #ff4a6b;
-      border: none;
-      padding: 10px 18px;
-      margin: 5px;
-      border-radius: 25px;
-      font-weight: bold;
-      font-size: 14px;
-      cursor: pointer;
-      transition: all 0.2s ease;
-    }
-    button:hover, .quick-btn:hover {
-      background: #ff4a6b;
-      color: #fff;
-      transform: translateY(-2px);
-    }
-
-    /* 메인 컨테이너 구조화 (모바일/PC 반응형) */
-    body > div, main, .container {
-      max-width: 800px;
-      margin: 30px auto;
-      padding: 0 20px;
-      box-sizing: border-box;
-    }
-
-    /* 섹션별 카드 레이아웃 적용 */
-    h1, h2, h3 {
-      color: #111;
-      margin-top: 35px;
-      margin-bottom: 15px;
-      font-size: 22px;
-    }
-
-    /* 유행병 경보 & 대시보드 박스 시각화 */
-    ul, ol, div[style*="border"] {
-      background: #fff;
-      padding: 25px;
-      border-radius: 16px !important;
-      box-shadow: 0 4px 16px rgba(0,0,0,0.04);
-      border: none !important;
-      border-left: 5px solid #ff4a6b !important;
-      margin-bottom: 20px;
-    }
-    li { margin-bottom: 10px; list-style-type: none; position: relative; }
-    li::before { content: "•"; color: #ff4a6b; font-weight: bold; display: inline-block; width: 1em; margin-left: -1em; }
-
-    /* 검색창 트렌디하게 변경 */
-    input[type="text"] {
-      width: 100%;
-      padding: 14px 24px;
-      margin: 15px 0;
-      border: 1.5px solid #eee;
-      border-radius: 30px;
-      font-size: 16px;
-      background: #fff;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.02);
-      box-sizing: border-box;
-      transition: all 0.2s ease;
-    }
-    input[type="text"]:focus {
-      outline: none;
-      border-color: #ff4a6b;
-      box-shadow: 0 4px 12px rgba(255, 74, 107, 0.15);
-    }
-
-    /* 야간 모드 및 기타 텍스트 정돈 */
-    p, span, label {
-      font-size: 15px;
-      color: #555;
-    }
-
-    /* 하단 정책 안내 구역 스타일링 */
-    div[style*="광고"] {
-      margin-top: 40px;
-      padding: 25px;
-      background: #f1f3f5 !important;
-      border-left: 5px solid #adb5bd !important;
-      border-radius: 12px !important;
-      font-size: 14px;
-    }
-  </style>
 </head>
 <body>
 
@@ -137,7 +27,7 @@
     <div class="logo-area">
       <i class="fa-solid fa-house-medical"></i> 자취닥터 <span>Holo-Yak</span>
     </div>
-    <!-- 대형 증상 바로가기 단축 버튼 -->
+    <!-- 3대 증상 단축 해시태그 버튼 -->
     <div class="quick-symptom-buttons">
       <button class="quick-btn" data-symptom="새벽고열">#새벽고열</button>
       <button class="quick-btn" data-symptom="급체/장염">#급체/장염</button>
@@ -146,219 +36,148 @@
   </header>
 
   <!-- ==========================================
-       메인 컨테이너 (반응형 2분할 구조)
+       [반응형 메인 컨테이너] PC 2분할 / 모바일 1열 배치
        ========================================== -->
   <main class="app-container">
     
-    <!-- 좌측 영역: 배너, 대시보드, 타이머 (PC에서는 Sticky 고정, 모바일에서는 상단 배치) -->
-    <section class="left-pane">
+    <!-- 좌측 사이드바 영역 -->
+    <aside class="left-pane">
       
-      <!-- [6] 상단 배너: 계절/날씨별 유행병 예방 수칙 -->
+      <!-- [6] 기상/계절별 유행병 예방 배너 (여름철 고온다습 타겟팅) -->
       <article class="outbreak-banner">
-        <span class="banner-badge">☀️ 여름철 고온다습 경보</span>
-        <h2 class="banner-title">유행 식중독 & 노로바이러스 조심!</h2>
-        <p class="banner-desc">현재 기온이 높아 세균 번식이 매우 빠릅니다. 자취방 사전 예방 3대 수칙을 꼭 실천하세요.</p>
+        <span class="banner-badge">🚨 여름철 계절 경보</span>
+        <h2 class="banner-title">식중독 & 급성 장염 예방 수칙</h2>
+        <p class="banner-desc">고온다습한 날씨로 세균 번식 위험이 높습니다. 자취방 사전 예방 3대 가이드를 준수하세요.</p>
         <ul class="banner-rules">
-          <li>먹다 남은 배달음식은 즉시 냉장고 보관 (2시간 방치 금지)</li>
-          <li>칼, 도마 등 조리도구는 끓는 물 또는 소독제로 살균</li>
-          <li>날것 섭취를 피하고 물은 끓여서 마시기</li>
+          <li>남은 배달 음식은 즉시 밀폐하여 냉장 보관하기</li>
+          <li>조리 전 30초 이상 흐르는 물에 깨끗이 비누로 손 씻기</li>
+          <li>조리도구(칼, 도마) 구분 사용 및 자주 살균하기</li>
         </ul>
       </article>
 
-      <!-- [4, 10] 자취생 실시간 대시보드 (Firebase 재고 및 복약 타이머) -->
-      <div class="dashboard-card">
-        <h3 class="dashboard-title"><i class="fa-solid fa-gauge-high"></i> 실시간 상태 대시보드</h3>
+      <!-- [대시보드] Firebase 재고 현황 & 복약 타이머 & 야간 토글 스위치 -->
+      <section class="dashboard-card">
+        <h3 class="dashboard-title">
+          <i class="fa-solid fa-square-poll-horizontal"></i> 자취방 헬스 대시보드
+        </h3>
         
-        <!-- [4] 파이어베이스 연동 약상자 재고 알림판 -->
+        <!-- [4] Firebase Realtime DB 연동 약 상자 상태 -->
         <div id="stockContainer" class="stock-panel stock-empty">
-          <div id="stockTitle" class="stock-status-title">🟢 내 서랍 상비약 : 감지 중...</div>
-          <div id="stockDesc" class="stock-status-desc">데이터베이스에서 실시간 약 보관함 상태를 불러오고 있습니다.</div>
+          <div id="stockTitle" class="stock-status-title">🟢 내 서랍 상비약 : 연동 중...</div>
+          <div id="stockDesc" class="stock-status-desc">서랍의 상비약 재고 감지 센서와 통신하고 있습니다.</div>
           
-          <!-- 로컬 확인용 재고 변경 시뮬레이터 -->
+          <!-- [테스트 시뮬레이터 조작 UI] -->
           <div class="test-simulator">
-            <span>[테스트] 서랍 재고 변경:</span>
+            <span>[재고 강제 조작]</span>
             <div class="test-btn-group">
-              <button class="test-btn" id="btnStockEmpty">없음(0)</button>
+              <button class="test-btn" id="btnStockEmpty">품절(0)</button>
               <button class="test-btn" id="btnStockAvailable">있음(1)</button>
             </div>
           </div>
         </div>
 
-        <!-- [10] 복약 안심 타이머 -->
+        <!-- [10] 복약 안심 6시간 타이머 -->
         <div class="timer-panel">
-          <div class="dashboard-title" style="margin-bottom: 4px;">
-            <i class="fa-regular fa-clock"></i> 복약 안심 카운트다운
+          <div class="dashboard-title" style="margin-bottom: 2px;">
+            <i class="fa-solid fa-hourglass-half"></i> 다음 복용 안심 타이머
           </div>
           <div class="timer-countdown" id="timerCountdown">--시간 --분 --초</div>
           <button class="timer-btn" id="takeDoseBtn">
-            <i class="fa-solid fa-capsules"></i> 지금 약 먹었음 💊
+            <i class="fa-solid fa-pills"></i> 지금 약 먹었음 💊
           </button>
-          <div style="font-size:0.75rem; color:var(--text-muted); text-align:center;">
-            * 복용 시간 기준 6시간 안전 간격을 모니터링합니다.
-          </div>
+          <p style="font-size: 0.72rem; color: var(--text-muted); text-align: center; margin-top: 4px;">
+            안전한 약 복용을 위해 6시간 간격을 준수하도록 돕습니다.
+          </p>
         </div>
 
-        <!-- [8] 실시간 야간 영업시간 필터 토글 -->
+        <!-- [8] 밤 9시 ~ 아침 9시 야간 강제 모드 토글 (시뮬레이션 전용) -->
         <div class="time-filter-panel">
           <span class="switch-label">
-            <i class="fa-solid fa-moon" style="color: #f59e0b;"></i> 야간 모드 강제 적용 (테스트)
+            <i class="fa-solid fa-cloud-moon" style="color: #eab308;"></i> 야간 영업 필터 (강제 활성화)
           </span>
           <label class="switch">
             <input type="checkbox" id="nightToggle">
             <span class="slider"></span>
           </label>
         </div>
-      </div>
+      </section>
       
-    </section>
+    </aside>
 
-    <!-- 우측 영역: 검색창, 약 목록, 하단 유사 질병 정보 -->
+    <!-- 우측 메인 영역 -->
     <section class="right-pane">
       
-      <!-- [1] 실시간 증상 검색 영역 -->
+      <!-- [1] 실시간 검색 바 -->
       <div class="search-wrapper">
         <div class="search-title-row">
-          <h2 class="search-title"><i class="fa-solid fa-magnifying-glass"></i> 증상 및 상비약 검색</h2>
+          <h2 class="search-title"><i class="fa-solid fa-magnifying-glass"></i> 증상 및 약품 실시간 검색</h2>
           <span class="current-time-badge" id="currentTimeBadge">현재시각: --:--:--</span>
         </div>
         <div class="search-box-container">
           <i class="fa-solid fa-magnifying-glass search-icon"></i>
-          <input type="text" id="searchInput" class="search-input" placeholder="증상 또는 초성을 입력하세요 (예: 두통, ㄷㅌ, 고열, ㄱㅇ)">
+          <input type="text" id="searchInput" class="search-input" placeholder="증상명(예: 두통, 열) 또는 자음 초성(예: ㄷㅌ, ㄱㅇ) 입력...">
         </div>
       </div>
 
-      <!-- 상비약 리스트 렌더링 컨테이너 -->
+      <!-- 상비약 카드 그리드 목록 -->
       <div class="symptom-grid" id="symptomList">
-        <!-- 자바스크립트에 의해 동적으로 약 카드가 생성됩니다 -->
+        <!-- js/app.js 로직에 따라 동적으로 카드가 이곳에 추가됩니다 -->
       </div>
 
-      <!-- [5] 연관/유사 질병 정보 제공 (하단 영역) -->
+      <!-- [5] 연관 / 유사 합병증 및 위험 질병 안내판 -->
       <section class="related-diseases-section">
         <h3 class="related-title">
-          <i class="fa-solid fa-triangle-exclamation"></i> 2차 합병증 및 혼동하기 쉬운 질병 알림
+          <i class="fa-solid fa-circle-exclamation"></i> 오인하기 쉬운 위험 질환 정보
         </h3>
-        <p style="font-size: 0.88rem; color: var(--text-muted); margin-top: -8px;">
-          *자취생이 단순 가벼운 증상으로 오해하여 방치할 수 있는 위험 질환들입니다. 상세히 대조해 보세요.
-        </p>
         <div class="related-grid">
           
           <div class="related-card">
-            <span class="related-main-symptom">체감 증상: 새벽고열 / 오한</span>
-            <span class="related-disease-name">⚠️ 급성 신우신염</span>
-            <p class="related-warning-desc">단순 몸살감기로 오인하기 쉬우나, 등쪽 척추 옆 갈비뼈 부위를 주먹으로 쳤을 때 극심한 통증이 느껴진다면 세균 감염성 요로 질환입니다. 즉시 내원해야 합니다.</p>
+            <span class="related-main-symptom">비슷한 체감 증상: 새벽고열 / 오한</span>
+            <span class="related-disease-name">⚠️ 급성 신우신염 의심</span>
+            <p class="related-warning-desc">단순 몸살 감기로 여기기 쉬우나 등허리 쪽(척추 양옆 갈비뼈 아래)을 톡톡 쳤을 때 깜짝 놀랄 수준의 통증이 느껴진다면 신장 감염증일 수 있어 병원 진료가 매우 급합니다.</p>
           </div>
 
           <div class="related-card">
-            <span class="related-main-symptom">체감 증상: 극심한 두통 / 구토</span>
-            <span class="related-disease-name">⚠️ 뇌수막염 및 뇌혈관 질환</span>
-            <p class="related-warning-desc">목을 앞으로 숙여 턱을 가슴에 대기 힘들 정도로 뻣뻣해지거나(항부경직), 열이 나면서 머리가 깨질 듯이 아프다면 단순 편두통이 아닐 수 있으므로 응급실 검사가 필수적입니다.</p>
+            <span class="related-main-symptom">비슷한 체감 증상: 심한 두통 / 메스꺼움</span>
+            <span class="related-disease-name">⚠️ 뇌수막염 의심</span>
+            <p class="related-warning-desc">고열과 더불어 고개를 숙여 턱이 가슴에 닿지 않을 만큼 목덜미 근육이 뻣뻣하고 구토 증상이 난다면 뇌수막염일 위험이 있으므로 응급 조치가 필요합니다.</p>
           </div>
 
           <div class="related-card">
-            <span class="related-main-symptom">체감 증상: 복통 / 설사 / 열</span>
-            <span class="related-disease-name">⚠️ 급성 충수염 (맹장염)</span>
-            <p class="related-warning-desc">처음엔 명치나 배꼽 부근이 얹힌 것처럼 체한 느낌이 들다가, 점차 오른쪽 아래 배로 통증이 쏠리고 손으로 눌렀다 뗄 때 비명이 날 정도로 아프다면 즉시 수술이 필요합니다.</p>
+            <span class="related-main-symptom">비슷한 체감 증상: 배탈 / 급체 / 복통</span>
+            <span class="related-disease-name">⚠️ 급성 충수염 (맹장염) 의심</span>
+            <p class="related-warning-desc">초기엔 얹힌 것처럼 명치 아래가 메스껍고 아프다가 서서히 우측 아랫배 부위로 바늘로 찌르는 듯한 통증이 집중된다면 빠르게 병원을 찾으셔야 합니다.</p>
           </div>
 
           <div class="related-card">
-            <span class="related-main-symptom">체감 증상: 목통증 / 기침 / 이물감</span>
-            <span class="related-disease-name">⚠️ 역류성 식도염</span>
-            <p class="related-warning-desc">기침이 나고 목에 뭔가가 걸린 것 같아 감기약만 찾아 먹기 쉽지만, 식사 직후 바로 눕는 습관 등으로 위산이 식도로 넘어와 생기는 만성 염증일 수 있습니다.</p>
+            <span class="related-main-symptom">비슷한 체감 증상: 기침 / 가래 / 목 아픔</span>
+            <span class="related-disease-name">⚠️ 역류성 식도염 의심</span>
+            <p class="related-warning-desc">목감기로 생각하기 쉽지만, 기름진 음식을 먹고 바로 눕는 습관 등으로 위산이 올라와 인후부를 손상시켜 쉰 목소리나 마른기침을 유발하는 증상일 수 있습니다.</p>
           </div>
 
         </div>
       </section>
 
-      <!-- [7] 자취생 맞춤형 콤팩트 큐레이션 Zero-Commercial 선언 -->
+      <!-- [7] 가성비 제로-커머셜 선언문 -->
       <footer class="footer-note">
-        <p>🔒 <strong>자취닥터 (Holo-Yak) Curation Policy</strong>: 본 앱은 일체의 광고 및 제휴 상업성 링크를 포함하지 않습니다.</p>
-        <p style="margin-top: 4px;">오직 돈 없는 1인 가구 자취생의 즉각적인 안전과 가성비 대처 수칙만을 제공합니다.</p>
+        <p>🛡️ <strong>자취닥터 (Holo-Yak) 제로-커머셜 정책</strong></p>
+        <p>본 앱은 광고 수익이나 병원 예약 커미션을 전혀 취하지 않으며, 자취생의 든든한 상비약 나침반 역할만을 수행합니다.</p>
       </footer>
 
     </section>
   </main>
 
-  <!-- [9] 복사 확인용 Toast 알림 요소 -->
+  <!-- [9] 클립보드 복사 알림 토스트 팝업 -->
   <div class="toast-msg" id="toastMsg">
-    <i class="fa-solid fa-circle-check" style="color:#4ade80;"></i>
+    <i class="fa-solid fa-check-circle" style="color: #4ade80; font-size: 1.1rem;"></i>
     <span class="toast-text">복사되었습니다.</span>
   </div>
 
-  <!-- Firebase SDK (v9 compat 라이브러리 연동) -->
+  <!-- Firebase v9 compat SDK CDN -->
   <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-database-compat.js"></script>
 
-  <!-- 애플리케이션 스크립트 연동 -->
+  <!-- 비즈니스 인터랙션 로직 스크립트 -->
   <script src="js/app.js"></script>
-  <!-- 모든 기능을 강제로 살려내는 마법의 통합 스크립트 -->
-  <script>
-    document.addEventListener("DOMContentLoaded", function() {
-      // 1. 현재 시각 실시간 작동 로직
-      function updateClock() {
-        const now = new Date();
-        const hours = String(now.getHours()).padStart(2, '0');
-        const minutes = String(now.getMinutes()).padStart(2, '0');
-        const seconds = String(now.getSeconds()).padStart(2, '0');
-        
-        // 화면에서 '현재시각' 텍스트가 포함된 요소를 찾아 시간 주입
-        const elements = document.getElementsByTagName('*');
-        for (let el of elements) {
-          if (el.innerHTML.includes('현재시각:')) {
-            el.innerHTML = `현재시각: ${hours}:${minutes}:${seconds}`;
-            break;
-          }
-        }
-      }
-      setInterval(updateClock, 1000);
-      updateClock();
-
-      // 2. 상단 해시태그 버튼 클릭 시 검색창 자동 입력 및 워프 로직
-      const quickButtons = document.querySelectorAll('.quick-btn, button');
-      const searchInput = document.querySelector('input[type="text"]');
-
-      quickButtons.forEach(btn => {
-        btn.addEventListener('click', function() {
-          const symptom = this.getAttribute('data-symptom') || this.innerText.replace('#', '');
-          
-          if (searchInput) {
-            searchInput.value = symptom;
-            // 검색창에 글자 넣고 실시간 필터링 함수 강제 실행
-            searchInput.dispatchEvent(new Event('input'));
-            
-            // 검색 결과 창으로 부드럽게 스크롤 이동
-            searchInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
-          }
-        });
-      });
-
-      // 3. 테스트용 서랍 재고 버튼 활성화 (클릭 시 상태 변경)
-      const btnNo = document.querySelector('button[onclick*="0"]') || document.querySelectorAll('button')[3];
-      const btnYes = document.querySelector('button[onclick*="1"]') || document.querySelectorAll('button')[4];
-      const statusText = document.querySelector('div[style*="border"] p') || document.body;
-
-      // 만약 파이어베이스 연동 에러로 '감지 중'에 멈춰있다면 가상 데이터로 풀어주기
-      setTimeout(() => {
-        if (document.body.innerText.includes('감지 중')) {
-          // 로딩 멈추고 기본값(재고 없음)으로 강제 전환
-          const infoArea = document.querySelector('div');
-          if(infoArea && infoArea.innerText.includes('데이터베이스')) {
-            infoArea.innerHTML = "❌ <b>내 서랍 재고 없음:</b> 등록된 비상약이 없습니다. 상단 또는 아래에서 증상을 검색해 가까운 편의점을 확인하세요!";
-            infoArea.style.borderLeft = "5px solid #ff4a6b";
-          }
-        }
-      }, 1500);
-
-      // 4. 복약 안심 타이머 버튼 작동 활성화
-      const doseBtn = document.querySelector('button[onclick*="복용"], .quick-btn + button');
-      if (doseBtn) {
-        doseBtn.addEventListener('click', function() {
-          alert('💊 복약 시간이 기록되었습니다! 6시간 뒤인 다음 복용 가능 시간에 알림을 드릴게요. 따뜻한 물과 함께 드세요.');
-          this.innerText = "⏳ 복약 완료 (타이머 작동 중)";
-          this.style.background = "#adb5bd";
-          this.style.color = "#fff";
-        });
-      }
-    });
-  </script>
 </body>
 </html>
