@@ -1,0 +1,762 @@
+/* 
+  자취닥터 (Holo-Yak) - Warm & Minimal Style Sheet
+  1인 가구 자취생을 위한 따뜻하고 눈이 편안한 디자인 시스템
+*/
+
+/* Google Fonts - Noto Sans KR (한국어 가독성) & Outfit (숫자 및 영문 트렌디 폰트) */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Outfit:wght@400;500;600;700&display=swap');
+
+:root {
+  /* 색상 정의 - Warm & Minimal Palette */
+  --bg-color: #faf7f2;          /* 따뜻한 아이보리 톤 배경 */
+  --card-bg: #ffffff;           /* 순백색 카드 배경 */
+  --primary-color: #6d8276;     /* 차분한 올리브/세이지 그린 */
+  --primary-hover: #57695f;     /* 호버 시 깊어지는 그린 */
+  --accent-color: #d67d65;      /* 포인트가 되는 웜 테라코타 오렌지 */
+  --accent-hover: #be6750;      /* 테라코타 호버 */
+  
+  --text-main: #2e2b2a;         /* 따뜻한 다크 브라운 그레이 */
+  --text-muted: #7d7571;        /* 부드러운 소프트 그레이 */
+  --border-color: #e8e2d9;      /* 경계선용 부드러운 베이지 그레이 */
+  
+  /* 상태 하이라이트 색상 (파이어베이스 재고 상태용) */
+  --stock-available-bg: #eaf5ee;   /* 초록색 강조 배경: 재고 있음 */
+  --stock-available-text: #276a43; /* 깊은 녹색 텍스트 */
+  --stock-empty-bg: #fdf1ee;       /* 빨간색 경고 배경: 재고 없음 */
+  --stock-empty-text: #bd3b22;     /* 깊은 적색 텍스트 */
+  
+  /* 타이머 및 배너 색상 */
+  --banner-bg: #f3eae1;
+  --timer-bg: #f9f5f0;
+  
+  /* 그림자 효과 */
+  --shadow-sm: 0 4px 12px rgba(139, 129, 120, 0.05);
+  --shadow-md: 0 10px 30px rgba(139, 129, 120, 0.08);
+  --shadow-hover: 0 16px 40px rgba(139, 129, 120, 0.15);
+  
+  /* 폰트 정의 */
+  --font-base: 'Noto Sans KR', sans-serif;
+  --font-accent: 'Outfit', sans-serif;
+}
+
+/* 초기화 */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-base);
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-main);
+  line-height: 1.6;
+  font-size: 15px;
+  min-height: 100vh;
+  padding-top: 80px; /* 상단 고정 메뉴 높이 대응 */
+}
+
+/* 공통 버튼 스타일 */
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  font-family: var(--font-base);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* 스크롤바 커스텀 */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-color);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-muted);
+}
+
+/* ==========================================
+   [상단 고정 메뉴] top-menu
+   ========================================== */
+#top-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 70px;
+  background-color: rgba(250, 247, 242, 0.85); /* 웜 글래스모피즘 효과 */
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border-bottom: 1px solid var(--border-color);
+  z-index: 1000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 24px;
+  max-width: 100%;
+}
+
+.logo-area {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 700;
+  font-size: 1.25rem;
+  color: var(--primary-color);
+}
+
+.logo-area span {
+  font-family: var(--font-accent);
+  color: var(--accent-color);
+  font-weight: 800;
+}
+
+.quick-symptom-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.quick-btn {
+  padding: 8px 16px;
+  border-radius: 30px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-color);
+  color: var(--text-main);
+  box-shadow: var(--shadow-sm);
+}
+
+.quick-btn:hover {
+  background-color: var(--primary-color);
+  color: #fff;
+  border-color: var(--primary-color);
+  transform: translateY(-2px);
+}
+
+/* ==========================================
+   반응형 레이아웃 컨테이너
+   ========================================== */
+.app-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 24px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+
+/* PC 버전: 좌측(대시보드/검색), 우측(상세/약 리스트) 2분할 레이아웃 정의 */
+@media (min-width: 992px) {
+  .app-container {
+    grid-template-columns: 380px 1fr;
+    align-items: start;
+  }
+  
+  .left-pane {
+    position: sticky;
+    top: 94px; /* header height(70px) + spacing(24px) */
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-height: calc(100vh - 120px);
+    overflow-y: auto;
+    padding-right: 4px;
+  }
+}
+
+/* ==========================================
+   [상단 배너] 계절/날씨별 유행병 예방 수칙
+   ========================================== */
+.outbreak-banner {
+  background-color: var(--banner-bg);
+  border-radius: 16px;
+  padding: 20px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  border-left: 5px solid var(--accent-color);
+}
+
+.banner-badge {
+  align-self: flex-start;
+  background-color: var(--accent-color);
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 4px 8px;
+  border-radius: 4px;
+  letter-spacing: 0.5px;
+}
+
+.banner-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.banner-desc {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+}
+
+.banner-rules {
+  margin-top: 8px;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.banner-rules li {
+  font-size: 0.85rem;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.banner-rules li::before {
+  content: "✓";
+  color: var(--accent-color);
+  font-weight: bold;
+}
+
+/* ==========================================
+   [대시보드 패널] Firebase 재고 & 복약 타이머 & 강제 야간 모드
+   ========================================== */
+.dashboard-card {
+  background-color: var(--card-bg);
+  border-radius: 16px;
+  padding: 20px;
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.dashboard-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* [4] 파이어베이스 실시간 데이터베이스 연동 하이라이트 */
+.stock-panel {
+  padding: 16px;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* 재고 있음 (Green) */
+.stock-available {
+  background-color: var(--stock-available-bg);
+  border: 1px solid rgba(39, 106, 67, 0.2);
+  color: var(--stock-available-text);
+}
+
+/* 재고 없음 (Red) */
+.stock-empty {
+  background-color: var(--stock-empty-bg);
+  border: 1px solid rgba(189, 59, 34, 0.2);
+  color: var(--stock-empty-text);
+}
+
+.stock-status-title {
+  font-weight: 700;
+  font-size: 1.05rem;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.stock-status-desc {
+  font-size: 0.85rem;
+}
+
+/* 시뮬레이터 조작 영역 (테스트용) */
+.test-simulator {
+  margin-top: 8px;
+  border-top: 1px dashed var(--border-color);
+  padding-top: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.test-btn-group {
+  display: flex;
+  gap: 4px;
+}
+
+.test-btn {
+  padding: 3px 8px;
+  background-color: var(--bg-color);
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  font-size: 0.75rem;
+}
+
+.test-btn:hover {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+/* [10] 복약 안심 타이머 */
+.timer-panel {
+  background-color: var(--timer-bg);
+  border-radius: 12px;
+  padding: 16px;
+  border: 1px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.timer-countdown {
+  font-family: var(--font-accent);
+  font-size: 1.5rem;
+  font-weight: 700;
+  text-align: center;
+  color: var(--accent-color);
+  letter-spacing: 1px;
+  margin: 6px 0;
+}
+
+.timer-btn {
+  background-color: var(--primary-color);
+  color: white;
+  padding: 10px;
+  border-radius: 8px;
+  font-size: 0.88rem;
+  font-weight: 500;
+  width: 100%;
+}
+
+.timer-btn:hover {
+  background-color: var(--primary-hover);
+}
+
+/* [8] 실시간 야간 필터 컨트롤 */
+.time-filter-panel {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.85rem;
+  border-top: 1px solid var(--border-color);
+  padding-top: 12px;
+}
+
+.switch-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 500;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 44px;
+  height: 24px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: .4s;
+  border-radius: 24px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 16px;
+  width: 16px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  transition: .4s;
+  border-radius: 50%;
+}
+
+input:checked + .slider {
+  background-color: var(--accent-color);
+}
+
+input:checked + .slider:before {
+  transform: translateX(20px);
+}
+
+/* ==========================================
+   우측 메인 영역 (검색 & 카드 목록 & 상세 안내)
+   ========================================== */
+.right-pane {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* [1] 초성/키워드 실시간 증상 검색창 */
+.search-wrapper {
+  background-color: var(--card-bg);
+  border-radius: 16px;
+  padding: 20px;
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.search-title-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.search-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+}
+
+.current-time-badge {
+  font-family: var(--font-accent);
+  font-size: 0.85rem;
+  background-color: var(--bg-color);
+  border: 1px solid var(--border-color);
+  padding: 4px 10px;
+  border-radius: 30px;
+  color: var(--text-muted);
+}
+
+.search-box-container {
+  position: relative;
+}
+
+.search-input {
+  width: 100%;
+  padding: 14px 16px 14px 44px;
+  border-radius: 12px;
+  border: 1.5px solid var(--border-color);
+  font-size: 0.95rem;
+  outline: none;
+  background-color: var(--bg-color);
+  transition: all 0.2s ease;
+}
+
+.search-input:focus {
+  border-color: var(--primary-color);
+  background-color: #fff;
+  box-shadow: 0 0 0 4px rgba(109, 130, 118, 0.1);
+}
+
+.search-icon {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-muted);
+  font-size: 1.1rem;
+}
+
+/* ==========================================
+   약 및 증상 안내 카드 레이아웃
+   ========================================== */
+.symptom-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+
+@media (min-width: 768px) {
+  .symptom-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.symptom-card {
+  background-color: var(--card-bg);
+  border-radius: 16px;
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-sm);
+  padding: 20px;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 16px;
+  position: relative;
+  overflow: hidden;
+}
+
+.symptom-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-hover);
+  border-color: var(--primary-color);
+}
+
+/* [8] 영업 시간 필터 적용 시 닫은 약국 블러/투명화 */
+.symptom-card.pharmacy-closed {
+  opacity: 0.4;
+  filter: grayscale(40%) blur(0.4px);
+  transition: all 0.3s ease;
+}
+
+.symptom-card.pharmacy-closed:hover {
+  opacity: 0.8;
+  filter: none;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.symptom-tag-pill {
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 4px;
+}
+
+/* [2] 상비약 분류 태그 */
+.tag-convenience {
+  background-color: #fef3c7; /* 옐로우 */
+  color: #d97706;
+}
+
+.tag-pharmacy {
+  background-color: #dbeafe; /* 블루 */
+  color: #2563eb;
+}
+
+.tag-allnight {
+  background-color: #fae8ff; /* 마젠타 */
+  color: #c026d3;
+}
+
+.symptom-name {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--text-main);
+  margin-top: 6px;
+}
+
+.medicine-info {
+  background-color: var(--bg-color);
+  padding: 12px;
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.medicine-name {
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+
+.medicine-price {
+  font-family: var(--font-accent);
+  font-weight: 600;
+  color: var(--accent-color);
+}
+
+/* [3] 가장 가까운 판매처 인프라 매핑 */
+.location-mapping {
+  border-top: 1px dashed var(--border-color);
+  padding-top: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.location-title {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.location-detail {
+  font-size: 0.85rem;
+  display: flex;
+  justify-content: space-between;
+  color: var(--text-main);
+}
+
+.location-dist {
+  font-family: var(--font-accent);
+  font-weight: 600;
+  color: var(--primary-color);
+}
+
+.location-hours {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  background-color: var(--bg-color);
+  padding: 3px 6px;
+  border-radius: 4px;
+  align-self: flex-start;
+}
+
+/* 카드 내 조작 패널 */
+.card-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+/* [9] "의사쌤한테 이대로 보여줘" 복사 버튼 */
+.copy-memo-btn {
+  flex: 1;
+  background-color: var(--bg-color);
+  color: var(--text-main);
+  border: 1px solid var(--border-color);
+  padding: 8px;
+  border-radius: 8px;
+  font-size: 0.78rem;
+  font-weight: 500;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+}
+
+.copy-memo-btn:hover {
+  background-color: var(--accent-color);
+  color: white;
+  border-color: var(--accent-color);
+}
+
+/* 복사 성공 토스트 피드백 알림 */
+.toast-msg {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%) translateY(100px);
+  background-color: #333333;
+  color: white;
+  padding: 10px 24px;
+  border-radius: 30px;
+  font-size: 0.88rem;
+  z-index: 2000;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.toast-msg.show {
+  transform: translateX(-50%) translateY(0);
+}
+
+/* ==========================================
+   [5] 연관/유사 질병 정보 제공 (하단 영역)
+   ========================================== */
+.related-diseases-section {
+  background-color: var(--card-bg);
+  border-radius: 16px;
+  padding: 24px;
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.related-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--accent-color);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.related-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 14px;
+}
+
+@media (min-width: 768px) {
+  .related-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.related-card {
+  background-color: var(--bg-color);
+  border-radius: 12px;
+  padding: 16px;
+  border: 1px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.related-main-symptom {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--text-muted);
+}
+
+.related-disease-name {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.related-warning-desc {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+}
+
+/* ==========================================
+   자취생 맞춤형 콤팩트 큐레이션 (Zero-Commercial) 하단 안내문
+   ========================================== */
+.footer-note {
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 0.78rem;
+  padding: 20px 0;
+  border-top: 1px solid var(--border-color);
+  margin-top: 20px;
+}
