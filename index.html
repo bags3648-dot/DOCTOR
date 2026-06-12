@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>자취닥터 (Holo-Yak) - 자취생 맞춤형 응급 상비약 & 실시간 예측 예방 가이드</title>
+  
+  <!-- SEO 메타 태그 정의 -->
+  <meta name="description" content="돈 없고 혼자 사는 자취생의 생존을 위한 실시간 예측 응급 상비약 정보 및 24시간 매핑 가이드">
+  <meta name="keywords" content="자취닥터, Holo-Yak, 상비약, 편의점 상비약, 야간약국, 자취생 응급조치, 복약타이머">
+  
+  <!-- 스타일시트 연동 -->
+  <link rel="stylesheet" href="css/style.css">
+  
+  <!-- 폰트어썸 (아이콘용) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+  <!-- ==========================================
+       [상단 고정 메뉴] top-menu
+       ========================================== -->
+  <header id="top-menu">
+    <div class="logo-area">
+      <i class="fa-solid fa-house-medical"></i> 자취닥터 <span>Holo-Yak</span>
+    </div>
+    <!-- 대형 증상 바로가기 단축 버튼 -->
+    <div class="quick-symptom-buttons">
+      <button class="quick-btn" data-symptom="새벽고열">#새벽고열</button>
+      <button class="quick-btn" data-symptom="급체/장염">#급체/장염</button>
+      <button class="quick-btn" data-symptom="극심한두통">#극심한두통</button>
+    </div>
+  </header>
+
+  <!-- ==========================================
+       메인 컨테이너 (반응형 2분할 구조)
+       ========================================== -->
+  <main class="app-container">
+    
+    <!-- 좌측 영역: 배너, 대시보드, 타이머 (PC에서는 Sticky 고정, 모바일에서는 상단 배치) -->
+    <section class="left-pane">
+      
+      <!-- [6] 상단 배너: 계절/날씨별 유행병 예방 수칙 -->
+      <article class="outbreak-banner">
+        <span class="banner-badge">☀️ 여름철 고온다습 경보</span>
+        <h2 class="banner-title">유행 식중독 & 노로바이러스 조심!</h2>
+        <p class="banner-desc">현재 기온이 높아 세균 번식이 매우 빠릅니다. 자취방 사전 예방 3대 수칙을 꼭 실천하세요.</p>
+        <ul class="banner-rules">
+          <li>먹다 남은 배달음식은 즉시 냉장고 보관 (2시간 방치 금지)</li>
+          <li>칼, 도마 등 조리도구는 끓는 물 또는 소독제로 살균</li>
+          <li>날것 섭취를 피하고 물은 끓여서 마시기</li>
+        </ul>
+      </article>
+
+      <!-- [4, 10] 자취생 실시간 대시보드 (Firebase 재고 및 복약 타이머) -->
+      <div class="dashboard-card">
+        <h3 class="dashboard-title"><i class="fa-solid fa-gauge-high"></i> 실시간 상태 대시보드</h3>
+        
+        <!-- [4] 파이어베이스 연동 약상자 재고 알림판 -->
+        <div id="stockContainer" class="stock-panel stock-empty">
+          <div id="stockTitle" class="stock-status-title">🟢 내 서랍 상비약 : 감지 중...</div>
+          <div id="stockDesc" class="stock-status-desc">데이터베이스에서 실시간 약 보관함 상태를 불러오고 있습니다.</div>
+          
+          <!-- 로컬 확인용 재고 변경 시뮬레이터 -->
+          <div class="test-simulator">
+            <span>[테스트] 서랍 재고 변경:</span>
+            <div class="test-btn-group">
+              <button class="test-btn" id="btnStockEmpty">없음(0)</button>
+              <button class="test-btn" id="btnStockAvailable">있음(1)</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- [10] 복약 안심 타이머 -->
+        <div class="timer-panel">
+          <div class="dashboard-title" style="margin-bottom: 4px;">
+            <i class="fa-regular fa-clock"></i> 복약 안심 카운트다운
+          </div>
+          <div class="timer-countdown" id="timerCountdown">--시간 --분 --초</div>
+          <button class="timer-btn" id="takeDoseBtn">
+            <i class="fa-solid fa-capsules"></i> 지금 약 먹었음 💊
+          </button>
+          <div style="font-size:0.75rem; color:var(--text-muted); text-align:center;">
+            * 복용 시간 기준 6시간 안전 간격을 모니터링합니다.
+          </div>
+        </div>
+
+        <!-- [8] 실시간 야간 영업시간 필터 토글 -->
+        <div class="time-filter-panel">
+          <span class="switch-label">
+            <i class="fa-solid fa-moon" style="color: #f59e0b;"></i> 야간 모드 강제 적용 (테스트)
+          </span>
+          <label class="switch">
+            <input type="checkbox" id="nightToggle">
+            <span class="slider"></span>
+          </label>
+        </div>
+      </div>
+      
+    </section>
+
+    <!-- 우측 영역: 검색창, 약 목록, 하단 유사 질병 정보 -->
+    <section class="right-pane">
+      
+      <!-- [1] 실시간 증상 검색 영역 -->
+      <div class="search-wrapper">
+        <div class="search-title-row">
+          <h2 class="search-title"><i class="fa-solid fa-magnifying-glass"></i> 증상 및 상비약 검색</h2>
+          <span class="current-time-badge" id="currentTimeBadge">현재시각: --:--:--</span>
+        </div>
+        <div class="search-box-container">
+          <i class="fa-solid fa-magnifying-glass search-icon"></i>
+          <input type="text" id="searchInput" class="search-input" placeholder="증상 또는 초성을 입력하세요 (예: 두통, ㄷㅌ, 고열, ㄱㅇ)">
+        </div>
+      </div>
+
+      <!-- 상비약 리스트 렌더링 컨테이너 -->
+      <div class="symptom-grid" id="symptomList">
+        <!-- 자바스크립트에 의해 동적으로 약 카드가 생성됩니다 -->
+      </div>
+
+      <!-- [5] 연관/유사 질병 정보 제공 (하단 영역) -->
+      <section class="related-diseases-section">
+        <h3 class="related-title">
+          <i class="fa-solid fa-triangle-exclamation"></i> 2차 합병증 및 혼동하기 쉬운 질병 알림
+        </h3>
+        <p style="font-size: 0.88rem; color: var(--text-muted); margin-top: -8px;">
+          *자취생이 단순 가벼운 증상으로 오해하여 방치할 수 있는 위험 질환들입니다. 상세히 대조해 보세요.
+        </p>
+        <div class="related-grid">
+          
+          <div class="related-card">
+            <span class="related-main-symptom">체감 증상: 새벽고열 / 오한</span>
+            <span class="related-disease-name">⚠️ 급성 신우신염</span>
+            <p class="related-warning-desc">단순 몸살감기로 오인하기 쉬우나, 등쪽 척추 옆 갈비뼈 부위를 주먹으로 쳤을 때 극심한 통증이 느껴진다면 세균 감염성 요로 질환입니다. 즉시 내원해야 합니다.</p>
+          </div>
+
+          <div class="related-card">
+            <span class="related-main-symptom">체감 증상: 극심한 두통 / 구토</span>
+            <span class="related-disease-name">⚠️ 뇌수막염 및 뇌혈관 질환</span>
+            <p class="related-warning-desc">목을 앞으로 숙여 턱을 가슴에 대기 힘들 정도로 뻣뻣해지거나(항부경직), 열이 나면서 머리가 깨질 듯이 아프다면 단순 편두통이 아닐 수 있으므로 응급실 검사가 필수적입니다.</p>
+          </div>
+
+          <div class="related-card">
+            <span class="related-main-symptom">체감 증상: 복통 / 설사 / 열</span>
+            <span class="related-disease-name">⚠️ 급성 충수염 (맹장염)</span>
+            <p class="related-warning-desc">처음엔 명치나 배꼽 부근이 얹힌 것처럼 체한 느낌이 들다가, 점차 오른쪽 아래 배로 통증이 쏠리고 손으로 눌렀다 뗄 때 비명이 날 정도로 아프다면 즉시 수술이 필요합니다.</p>
+          </div>
+
+          <div class="related-card">
+            <span class="related-main-symptom">체감 증상: 목통증 / 기침 / 이물감</span>
+            <span class="related-disease-name">⚠️ 역류성 식도염</span>
+            <p class="related-warning-desc">기침이 나고 목에 뭔가가 걸린 것 같아 감기약만 찾아 먹기 쉽지만, 식사 직후 바로 눕는 습관 등으로 위산이 식도로 넘어와 생기는 만성 염증일 수 있습니다.</p>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- [7] 자취생 맞춤형 콤팩트 큐레이션 Zero-Commercial 선언 -->
+      <footer class="footer-note">
+        <p>🔒 <strong>자취닥터 (Holo-Yak) Curation Policy</strong>: 본 앱은 일체의 광고 및 제휴 상업성 링크를 포함하지 않습니다.</p>
+        <p style="margin-top: 4px;">오직 돈 없는 1인 가구 자취생의 즉각적인 안전과 가성비 대처 수칙만을 제공합니다.</p>
+      </footer>
+
+    </section>
+  </main>
+
+  <!-- [9] 복사 확인용 Toast 알림 요소 -->
+  <div class="toast-msg" id="toastMsg">
+    <i class="fa-solid fa-circle-check" style="color:#4ade80;"></i>
+    <span class="toast-text">복사되었습니다.</span>
+  </div>
+
+  <!-- Firebase SDK (v9 compat 라이브러리 연동) -->
+  <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-database-compat.js"></script>
+
+  <!-- 애플리케이션 스크립트 연동 -->
+  <script src="js/app.js"></script>
+</body>
+</html>
