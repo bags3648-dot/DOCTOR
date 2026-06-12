@@ -179,5 +179,28 @@
 
   <!-- 비즈니스 인터랙션 로직 스크립트 -->
   <script src="js/app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-database-compat.js"></script>
+
+  <script>
+  const firebaseConfig = {
+    apiKey: "AIzaSyAxRMxgSrq5UPtf8DhJ91nwgfMSG7h4R0U",
+    authDomain: "appa-b474d.firebaseapp.com",
+    databaseURL: "https://appa-b474d-default-rtdb.firebaseio.com",
+    projectId: "appa-b474d",
+    storageBucket: "appa-b474d.firebasestorage.app",
+    messagingSenderId: "976553186493",
+    appId: "1:976553186493:web:6faeb0c87ce77584f1d3d4",
+    measurementId: "G-LPLK41815W"
+  };
+
+  // 구글 서버와 실시간 대화 시작!
+  firebase.initializeApp(firebaseConfig);
+  const auth = firebase.auth();
+  const database = firebase.database();
+
+  console.log("자취닥터 파이어베이스 실시간 연동 완벽 성공! 🚀");
+</script>
 </body>
 </html>
