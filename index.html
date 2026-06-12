@@ -199,6 +199,15 @@
   firebase.initializeApp(firebaseConfig);
   const auth = firebase.auth();
   const database = firebase.database();
+  // 💡 [테스트용] 사이트 켜지자마자 구글 로그인 창 강제로 띄우기!
+  const provider = new firebase.auth.GoogleAuthProvider();
+  auth.signInWithPopup(provider)
+    .then((result) => {
+      alert(result.user.displayName + "님, 로그인 성공했어요! 🎉");
+    })
+    .catch((error) => {
+      alert("로그인 실패 에러: " + error.message);
+    });
 
   console.log("자취닥터 파이어베이스 실시간 연동 완벽 성공! 🚀");
 </script>
