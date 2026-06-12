@@ -6,37 +6,23 @@
 // ==========================================
 // [Firebase 설정 및 초기화]
 // ==========================================
-// Firebase v9 compat 설정 (사용자가 본인의 정보로 변경하여 배포 가능)
-const firebaseConfig = {
-  apiKey: "YOUR_API_KEY",
-  authDomain: "holo-yak.firebaseapp.com",
-  databaseURL: "https://holo-yak-default-rtdb.firebaseio.com",
-  projectId: "holo-yak",
-  storageBucket: "holo-yak.appspot.com",
-  messagingSenderId: "YOUR_SENDER_ID",
-  appId: "YOUR_APP_ID"
-};
-
+// index.html에서 이미 진짜 정보로 초기화했으므로, 여기서는 연동만 해줍니다!
 let db = null;
 let isFirebaseConnected = false;
 
-// Firebase 초기화 시도 (설정이 변경되지 않았거나 오프라인인 경우 예외처리)
-try {
-  if (typeof firebase !== 'undefined') {
-    const app = firebase.initializeApp(firebaseConfig);
-    db = firebase.database();
-    isFirebaseConnected = true;
-    console.log("Firebase Realtime Database 연동 성공");
-  } else {
-    console.warn("Firebase 라이브러리가 로드되지 않았습니다. 시뮬레이션 모드로 작동합니다.");
+function connectFirebase() {
+  try {
+    if (typeof firebase !== 'undefined') {
+      db = firebase.database();
+      isFirebaseConnected = true;
+      console.log("자취닥터 파이어베이스 실시간 연동 완벽 성공! 🚀");
+    } else {
+      console.warn("Firebase 라이브러리가 로드되지 않았습니다. 시뮬레이션 모드로 작동합니다.");
+    }
+  } catch (error) {
+    console.warn("Firebase 연결 실패. 시뮬레이션 모드로 작동합니다.", error);
   }
-} catch (error) {
-  console.warn("Firebase 연결 실패. 시뮬레이션 모드로 작동합니다.", error);
 }
-
-// ==========================================
-// [상상비약 & 증상 데이터 모델 정의]
-// ==========================================
 const symptomData = [
   {
     id: "fever",
@@ -166,6 +152,7 @@ let simulatedStock = 0; // 로컬 테스트용 서랍 약 재고 수치
 // [앱 초기 실행 로직]
 // ==========================================
 document.addEventListener("DOMContentLoaded", () => {
+  connectFirebase(); 
   initRealtimeClock();
   initDoseTimer();
   initFirebaseStock();
